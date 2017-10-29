@@ -1,0 +1,38 @@
+FORMAT: 1A
+
+# Go API ドキュメント デモ
+
+# Group グループです
+
+## ユーザ [/users]
+
+### 一覧 [GET]
+
+  + Response 200 (application/json; charset=UTF-8)
+
+    + Body
+
+      {
+        "name": "zaru"
+      }
+
+    + Schema
+
+      {
+        "$schema": "http://json-schema.org/draft-06/schema#",
+        "definitions": {},
+        "id": "http://example.com/example.json",
+        "properties": {
+          "name": {
+            "default": "zaru",
+            "description": "",
+            "id": "/properties/name",
+            "title": "The Name Schema.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      }
