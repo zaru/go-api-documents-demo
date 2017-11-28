@@ -8,31 +8,22 @@ FORMAT: 1A
 
 ### 一覧 [GET]
 
-  + Response 200 (application/json; charset=UTF-8)
++ Response 200 (application/json; charset=UTF-8)
 
-    + Body
+    + Attributes (array[User], fixed-type)
 
-      {
-        "name": "zaru"
-      }
+## Data Structures
 
-    + Schema
-
-      {
-        "$schema": "http://json-schema.org/draft-06/schema#",
-        "definitions": {},
-        "id": "http://example.com/example.json",
-        "properties": {
-          "name": {
-            "default": "zaru",
-            "description": "",
-            "id": "/properties/name",
-            "title": "The Name Schema.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ],
-        "type": "object"
-      }
+### User
++ id: `100` (number) - User ID
++ name: `zaru` (string) - User name
++ rank: `1` (enum[number]) - User rank
+  + 1
+  + 2
+  + 3
+  + Default: 1
++ tags: golang (array[string]) - User tag
+  + Sample: golang
+  + Sample
+    + rails
+    + vuejs
