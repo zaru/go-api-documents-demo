@@ -1,3 +1,2 @@
 #!/bin/bash
-export APP_ENV=test
-go run server.go
+APP_ENV=test go run server.go

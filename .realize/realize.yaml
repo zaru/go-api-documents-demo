@@ -5,8 +5,8 @@ settings:
 server:
   status: false
   open: false
-  host: localhost
   port: 5001
+  host: localhost
 schema:
 - name: go-api-documents-demo
   path: .

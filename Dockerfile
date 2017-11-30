@@ -3,8 +3,10 @@ FROM golang:1.9.2-stretch
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+    lsof \
     vim \
-    nodejs
+    nodejs \
+    mysql-client
 
 # bashrc
 RUN echo 'PS1="${debian_chroot:+($debian_chroot)}\e[35m\u@\h:\w\e[0m\\n$ "' >> ~/.bashrc; \

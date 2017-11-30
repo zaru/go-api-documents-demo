@@ -1,16 +1,21 @@
 const hooks = require('hooks')
 const execSync = require('child_process').execSync
 
+const testDBHost = 'db'
 const testDBName = 'sample_test'
+const testAppPort = '1323'
 
 hooks.beforeAll(function (transactions, done) {
   hooks.log('before all')
 
-  let result = execSync('mysql -h 127.0.0.1 -u root -e "create database ' + testDBName + '"').toString()
+  let result = execSync('mysql -h ' + testDBHost + ' -u root -e "create database ' + testDBName + '"').toString()
   hooks.log('create database: ' + result)
 
-  result = execSync('goose -dir ./migrations mysql "root@/' + testDBName + '" up').toString()
+  result = execSync('goose -dir ./migrations mysql "root@(' + testDBHost + ')/' + testDBName + '" up').toString()
   hooks.log('migration: ' + result)
+
+  result = execSync('mysql -h ' + testDBHost + ' -u root ' + testDBName + ' < ./seed/test.sql').toString()
+  hooks.log('seed: ' + result)
 
   done()
 })
@@ -48,10 +53,11 @@ hooks.afterEach(function (transaction, done) {
 hooks.afterAll(function (transactions, done) {
   hooks.log('after all')
 
-  let result = execSync('mysql -h 127.0.0.1 -u root -e "drop database ' + testDBName + '"').toString()
+  let result = execSync('mysql -h ' + testDBHost + ' -u root -e "drop database ' + testDBName + '"').toString()
   hooks.log('drop database: ' + result)
 
-  execSync('kill `lsof -ti tcp:1323`')
+  result = execSync('kill `lsof -ti tcp:' + testAppPort + '`')
+  hooks.log('kill app: ' + result)
 
   done()
 })

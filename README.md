@@ -37,7 +37,12 @@ dredd
 realize start
 ```
 
+#### DB migration
 
+```
+goose -dir ./migrations mysql 'root@(db:3306)/sample' status
+goose -dir ./migrations create add_tag_table sql
+```
 
 
 ```
